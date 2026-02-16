@@ -1,10 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,11 +24,16 @@ public class TodoLogic {
     // Add a task
     public void addTask(String taskName) {
         Task task = new Task(id_counter, taskName);
-        tasks_inProgress.add( task);
+        tasks_inProgress.add(task);
+        id_counter ++;
+    }
+    public void addTask(String taskName, Date deadline) {
+        Task task = new Task(id_counter, taskName, deadline);
+        tasks_inProgress.add(task);
         id_counter ++;
     }
     // Edit a task
-    public void editTask(int taskId, String newTaskName) {
+    public void editTask_name(int taskId, String newTaskName) {
         for (Task task : tasks_inProgress) {
             if (task.getId() == taskId) {
                 task.setName(newTaskName);
@@ -39,8 +41,20 @@ public class TodoLogic {
             }
         }
     }
+    public void editTask_deadline(int taskId, Date deadline) {
+        for (Task task : tasks_inProgress) {
+            if (task.getId() == taskId) {
+                task.setDeadline(deadline);
+                break;
+            }
+        }
+    }
 
     // View tasks in progress
+    public void viewTasks() {
+        viewTasksInProgress();
+        viewCompletedTasks();
+    }
     public void viewTasksInProgress() {
         System.out.println("Tasks in progress:");
         if (tasks_inProgress.isEmpty()) {

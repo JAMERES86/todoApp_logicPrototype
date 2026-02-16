@@ -18,7 +18,11 @@ public class Task {
     }
 
     public String toString() {
-        return "Task ID: " + id + ", Name: " + name;
+        String content = "ID: " + id + ", Name: " + name;
+        if (deadline!=null){
+            content += ", Deadline: " + deadline;
+        }
+        return content;
     }
 
     public void setName(String name) {

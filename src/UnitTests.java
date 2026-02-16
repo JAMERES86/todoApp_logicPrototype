@@ -1,3 +1,6 @@
+import java.util.Calendar;
+import java.util.Date;
+
 public class UnitTests {
     public static void testAddTask() {
         TodoLogic todoLogic = new TodoLogic();
@@ -11,7 +14,7 @@ public class UnitTests {
         todoLogic.addTask("Task 1");
         todoLogic.addTask("Task 2");
         todoLogic.addTask("Task 3");
-        todoLogic.editTask(1, "Edited Task 2");
+        todoLogic.editTask_name(1, "Edited Task 2");
         todoLogic.viewTasksInProgress();
     }
     public static void testCompleteTask() {
@@ -65,6 +68,16 @@ public class UnitTests {
         todoLogic_session2.loadStatesFromFile();
         todoLogic_session2.viewTasksInProgress();
     }
+    public static void testDeadline(){
+        TodoLogic todoLogic = new TodoLogic();
+        todoLogic.addTask("Task 1", new Date(2025-1900, Calendar.JANUARY, 1));
+        todoLogic.viewTasks();
+        todoLogic.editTask_deadline(0, new Date(2025-1900, Calendar.JANUARY, 8));
+        System.out.println();
+
+        todoLogic.viewTasks();
+    }
     public static void main(String[] args) {
+        testDeadline();
     }
 }
