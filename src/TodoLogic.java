@@ -93,6 +93,22 @@ public class TodoLogic {
         tasks_completed.add(target_task);
         tasks_inProgress.remove(target_task);
     }
+    // Decomplete a task
+    public void decompleteTask(int taskId) {
+        Task target_task = null;
+        for (Task task : tasks_completed) {
+            if (task.getId() == taskId) {
+                target_task = task;
+                break;
+            }
+        }
+        if (target_task==null) {
+            System.out.println("Task not found.");
+            return;
+        }
+        tasks_inProgress.add(target_task);
+        tasks_completed.remove(target_task);
+    }
     // Delete a task
     public void deleteTask(int taskId) {
         //TIP: 使用迭代器来删除元素

@@ -32,6 +32,21 @@ public class UnitTests {
         todoLogic.viewTasksInProgress();
         todoLogic.viewCompletedTasks();
     }
+
+    public static void testDecompleteTask(){
+        TodoLogic todoLogic = new TodoLogic();
+        todoLogic.addTask("Task 1");
+        todoLogic.addTask("Task 2");
+        todoLogic.addTask("Task 3");
+        System.out.println("State 1");
+        todoLogic.viewTasks();
+        todoLogic.completeTask(1);
+        System.out.println("State 2");
+        todoLogic.viewTasks();
+        todoLogic.decompleteTask(1);
+        System.out.println("State 3");
+        todoLogic.viewTasks();
+    }
     public static void testDeleteTask() {
         TodoLogic todoLogic = new TodoLogic();
         todoLogic.addTask("Task 1");
@@ -78,6 +93,6 @@ public class UnitTests {
         todoLogic.viewTasks();
     }
     public static void main(String[] args) {
-        testDeadline();
+        testDecompleteTask();
     }
 }
